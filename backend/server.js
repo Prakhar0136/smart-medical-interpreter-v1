@@ -24,7 +24,11 @@ const PORT = process.env.PORT || 5000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(cors({origin:'*'}));
+app.use(cors({
+    origin: '*', // For now, allow any origin. You can lock this down to your Vercel URL later.
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 const uploadDir = path.join(__dirname, 'uploads');
